@@ -1,7 +1,10 @@
 import express from "express";
 import { sequelize } from "./models";
 import cors from "cors";
-import { swaggerUi, specs } from "./modules/swagger";
+import swaggerUi from "swagger-ui-express";
+import YAML from "yamljs";
+import path from "path";
+
 const app = express();
 
 app.use(cors());
@@ -15,10 +18,9 @@ app.use(express.json());
 
 app.use("/", require("./api")); //라우터
 
-// swagger
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
+const swaggerYaml = YAML.load(path.join(__dirname, "./build/swagger.yaml"));
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerYaml));
 
-// error handler
 app.use(function (err, req, res, next) {
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "production" ? err : {};

@@ -1,0 +1,22 @@
+swagger: "2.0"
+info:
+  description: "집톡 API 명세서입니다."
+  version: "1.0.0"
+  title: "집톡 API"
+tags:
+  - name: "issue"
+    description: "이슈 관련 API"
+paths:
+  /issue:
+    post:
+      tags:
+        - "issue"
+      parameters:
+        - name: "content"
+          in: "formData"
+          required: true
+          type: "string"
+        - name: "imgs"
+          in: "formData"
+          required: false
+          type: "file"
