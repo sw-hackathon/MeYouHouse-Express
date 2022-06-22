@@ -13,7 +13,7 @@ module.exports = async (req: Request, res: Response) => {
   let userId = 1;
   const reqData = req.body;
   const { issueId } = req.params;
-  if (req.headers.authorization == "HOST") {
+  if (req.headers.authorization == "host") {
     userId = 2;
   }
 

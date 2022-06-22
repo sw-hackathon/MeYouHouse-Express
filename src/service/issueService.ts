@@ -1,4 +1,4 @@
-import sequelize, { Op } from "sequelize";
+import sequelize, { Model, Op } from "sequelize";
 import _ from "lodash";
 import {
   Home,
@@ -8,6 +8,7 @@ import {
   Resident,
   User,
 } from "../models";
+import dayjs from "dayjs";
 
 /**
  * @이슈_올리기
@@ -64,6 +65,57 @@ export const getIssueService = _.memoize(() => {
       });
 
       return issue;
+    },
+    async getIssuesByDate(data: {
+      userId: number;
+      isClient: boolean;
+      date: string;
+    }) {
+      const { userId, isClient, date } = data;
+      if (isClient) {
+        const resident = await Resident.findOne({
+          where: { user_id: userId },
+          attributes: ["id"],
+        });
+        const issues = await Issue.findAll({
+          where: {
+            created_at: {
+              [Op.gte]: date,
+              [Op.lt]: dayjs(date).add(1, "day").format("YYYY-MM-DD"),
+            },
+            resident_id: resident.id,
+          },
+        });
+        return issues;
+      } else {
+        const home = await Home.findOne({
+          where: { host_id: userId },
+          include: [
+            {
+              model: Resident,
+            },
+          ],
+        });
+        const residentIds = home.residents.map((o) => o.id);
+        const issues = await Issue.findAll({
+          where: {
+            created_at: {
+              [Op.gte]: date,
+              [Op.lt]: dayjs(date).add(1, "day").format("YYYY-MM-DD"),
+            },
+            resident_id: {
+              [Op.in]: residentIds,
+            },
+          },
+          include: [
+            {
+              model: Resident,
+              attributes: ["room_number"],
+            },
+          ],
+        });
+        return issues;
+      }
     },
   };
 });
