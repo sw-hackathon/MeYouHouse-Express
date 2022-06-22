@@ -21,9 +21,10 @@ import { Resident, ProblemImage, Problem, User } from "./";
   tableName: "reviews",
   freezeTableName: true,
   underscored: true,
-  timestamps: true,
+  timestamps: false,
   charset: "utf8",
   collate: "utf8_general_ci",
+  updatedAt: false,
 })
 export default class Review extends Model {
   @PrimaryKey

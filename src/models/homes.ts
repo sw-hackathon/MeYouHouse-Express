@@ -23,6 +23,7 @@ import { User } from "./";
   timestamps: true,
   charset: "utf8",
   collate: "utf8_general_ci",
+  updatedAt: false,
 })
 export default class Home extends Model {
   @PrimaryKey

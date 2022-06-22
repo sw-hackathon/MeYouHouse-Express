@@ -22,9 +22,10 @@ import Resident from "./residents";
   tableName: "users",
   freezeTableName: true,
   underscored: true,
-  timestamps: true,
+  timestamps: false,
   charset: "utf8",
   collate: "utf8_general_ci",
+  updatedAt: false,
 })
 export default class User extends Model {
   @PrimaryKey

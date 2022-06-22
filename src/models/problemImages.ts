@@ -20,9 +20,10 @@ import { Problem } from "./";
   tableName: "problem_images",
   freezeTableName: true,
   underscored: true,
-  timestamps: true,
+  timestamps: false,
   charset: "utf8",
   collate: "utf8_general_ci",
+  updatedAt: false,
 })
 export default class ProblemImage extends Model {
   @PrimaryKey

@@ -23,6 +23,7 @@ import { Resident, ProblemImage, ProblemComment } from "./";
   timestamps: true,
   charset: "utf8",
   collate: "utf8_general_ci",
+  updatedAt: false,
 })
 export default class Problem extends Model {
   @PrimaryKey
