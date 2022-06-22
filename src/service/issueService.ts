@@ -173,5 +173,18 @@ export const getIssueService = _.memoize(() => {
         return issues;
       }
     },
+    async createIssueComment(data: {
+      issueId: number;
+      content: string;
+      userId: number;
+    }) {
+      const { issueId, content, userId } = data;
+      const comment = await IssueComment.create({
+        issue_id: issueId,
+        content,
+        user_id: userId,
+      });
+      return comment;
+    },
   };
 });

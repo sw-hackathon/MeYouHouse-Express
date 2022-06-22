@@ -20,5 +20,6 @@ router.post(
 router.get("/date", require("./issueDateGET"));
 router.get("/:issueId", require("./issueDetailGET"));
 router.get("", require("./issueGET"));
+router.post("/:issueId/comment", require("./issueCommentPOST"));
 
 module.exports = router;
