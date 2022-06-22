@@ -7,7 +7,13 @@ const router = express.Router();
 // router.post("", require("./issuePOST"));
 router.post(
   "",
-  upload.fields([{ name: "imgs", maxCount: 5 }]),
+  upload.fields([
+    { name: "img1", maxCount: 1 },
+    { name: "img2", maxCount: 1 },
+    { name: "img3", maxCount: 1 },
+    { name: "img4", maxCount: 1 },
+    { name: "img5", maxCount: 1 },
+  ]),
   require("./issuePOST")
 );
 

@@ -17,12 +17,25 @@ module.exports = async (req: Request, res: Response) => {
   try {
     const { content } = reqData;
 
-    let imgs;
-    console.log((req as any).files.imgs);
-    if ((req as any).files.imgs) {
-      imgs = (req as any).files.imgs.map((img) => img.location);
+    const imgs = [];
+    if ((req as any).files) {
+      (req as any).files.img1
+        ? imgs.push((req as any).files.img1[0].location)
+        : null;
+      (req as any).files.img2
+        ? imgs.push((req as any).files.img2[0].location)
+        : null;
+      (req as any).files.img3
+        ? imgs.push((req as any).files.img3[0].location)
+        : null;
+      (req as any).files.img4
+        ? imgs.push((req as any).files.img4[0].location)
+        : null;
+      (req as any).files.img5
+        ? imgs.push((req as any).files.img5[0].location)
+        : null;
     }
-    console.log("imgs", imgs);
+
     const issueId = await getIssueService().createIssue({
       residentId,
       content,
