@@ -15,7 +15,7 @@ import {
   ForeignKey,
   BelongsTo,
 } from "sequelize-typescript";
-import { Resident, ProblemImage, Problem, User } from "./";
+import { Resident, IssueImage, Issue, User } from "./";
 
 @Table({
   tableName: "reviews",

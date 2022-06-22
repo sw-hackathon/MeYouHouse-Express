@@ -16,5 +16,5 @@ router.post(
   ]),
   require("./issuePOST")
 );
-
+router.get("/:issueId", require("./issueDetailGET"));
 module.exports = router;

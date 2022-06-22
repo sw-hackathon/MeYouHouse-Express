@@ -3,9 +3,9 @@ import dotenv from "dotenv";
 import User from "./users";
 import Home from "./homes";
 import Resident from "./residents";
-import Problem from "./problems";
-import ProblemImage from "./problemImages";
-import ProblemComment from "./probelmComments";
+import Issue from "./issues";
+import IssueImage from "./issueImages";
+import IssueComment from "./issueComments";
 import Review from "./reviews";
 
 const db: any = {};
@@ -26,12 +26,12 @@ sequelize.addModels([
   User,
   Home,
   Resident,
-  Problem,
-  ProblemImage,
-  ProblemComment,
+  Issue,
+  IssueImage,
+  IssueComment,
   Review,
 ]);
 
-export { User, Home, Resident, Problem, ProblemImage, ProblemComment, Review };
+export { User, Home, Resident, Issue, IssueImage, IssueComment, Review };
 
 export default sequelize;

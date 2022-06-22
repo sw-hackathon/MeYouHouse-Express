@@ -14,8 +14,8 @@ import {
   BelongsTo,
 } from "sequelize-typescript";
 import Home from "./homes";
-import ProblemComment from "./probelmComments";
-import Problem from "./problems";
+import IssueComment from "./issueComments";
+import Issue from "./issues";
 import Resident from "./residents";
 
 @Table({
@@ -43,6 +43,6 @@ export default class User extends Model {
   @HasOne(() => Resident)
   resident: Resident;
 
-  @HasMany(() => ProblemComment)
-  problemComments: ProblemComment[];
+  @HasMany(() => IssueComment)
+  issueComments: IssueComment[];
 }

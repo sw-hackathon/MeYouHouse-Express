@@ -14,10 +14,10 @@ import {
   ForeignKey,
   BelongsTo,
 } from "sequelize-typescript";
-import { Resident, ProblemImage, ProblemComment } from "./";
+import { Resident, IssueImage, IssueComment } from ".";
 
 @Table({
-  tableName: "problems",
+  tableName: "issues",
   freezeTableName: true,
   underscored: true,
   timestamps: true,
@@ -25,7 +25,7 @@ import { Resident, ProblemImage, ProblemComment } from "./";
   collate: "utf8_general_ci",
   updatedAt: false,
 })
-export default class Problem extends Model {
+export default class Issue extends Model {
   @PrimaryKey
   @AutoIncrement
   @Unique
@@ -42,16 +42,16 @@ export default class Problem extends Model {
   @CreatedAt
   created_at: Date;
 
-  @Default(null)
+  @Default(false)
   @Column
   is_completed: boolean;
 
   @BelongsTo(() => Resident)
   resident: Resident;
 
-  @HasMany(() => ProblemImage)
-  images: ProblemImage[];
+  @HasMany(() => IssueImage)
+  images: IssueImage[];
 
-  @HasMany(() => ProblemComment)
-  comments: ProblemComment[];
+  @HasMany(() => IssueComment)
+  comments: IssueComment[];
 }
