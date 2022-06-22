@@ -16,6 +16,7 @@ app.use(express.json());
 app.use("/", require("./api")); //라우터
 
 // swagger
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
 
 // error handler
 app.use(function (err, req, res, next) {
