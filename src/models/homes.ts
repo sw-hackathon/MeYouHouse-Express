@@ -14,7 +14,7 @@ import {
   ForeignKey,
   BelongsTo,
 } from "sequelize-typescript";
-import { User } from "./";
+import { User, Resident } from "./";
 
 @Table({
   tableName: "homes",
@@ -44,4 +44,7 @@ export default class Home extends Model {
 
   @BelongsTo(() => User)
   host: User;
+
+  @HasMany(() => Resident)
+  residents: Resident[];
 }

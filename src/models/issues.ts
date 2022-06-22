@@ -39,6 +39,12 @@ export default class Issue extends Model {
   @Column
   content: string;
 
+  @Column
+  title: string;
+
+  @Column
+  category: string;
+
   @CreatedAt
   created_at: Date;
 

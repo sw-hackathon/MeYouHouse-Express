@@ -52,4 +52,7 @@ export default class Resident extends Model {
 
   @HasOne(() => Review)
   review: Review;
+
+  @BelongsTo(() => Home)
+  home: Home;
 }

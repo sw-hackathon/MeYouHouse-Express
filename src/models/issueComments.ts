@@ -48,4 +48,7 @@ export default class issueComment extends Model {
 
   @BelongsTo(() => Issue)
   issue: Issue;
+
+  @BelongsTo(() => User)
+  user: User;
 }

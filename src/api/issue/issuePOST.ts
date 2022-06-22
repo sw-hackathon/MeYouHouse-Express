@@ -15,7 +15,7 @@ module.exports = async (req: Request, res: Response) => {
     return res.status(sc.BAD_REQUEST).send(fail(sc.BAD_REQUEST, rm.NULL_VALUE));
   }
   try {
-    const { content } = reqData;
+    const { content, category, title } = reqData;
 
     const imgs = [];
     if ((req as any).files) {
@@ -39,6 +39,8 @@ module.exports = async (req: Request, res: Response) => {
     const issueId = await getIssueService().createIssue({
       residentId,
       content,
+      category,
+      title,
     });
 
     if (issueId) {
