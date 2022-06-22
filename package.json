@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "dev": "ts-node src",
-    "build": "tsc && node dist",
+    "build": "tsc && node --max_old_space_size=4096 dist",
     "test": "nodemon",
     "start": "pm2 start ts-node -- --type-check -r tsconfig-paths/register src/index.ts"
   },
@@ -39,7 +39,6 @@
     "aws-sdk": "^2.939.0",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
-    "dayjs": "^1.11.3",
     "dotenv": "^10.0.0",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
