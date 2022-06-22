@@ -12,20 +12,15 @@ const db: any = {};
 
 dotenv.config();
 
-export const sequelize = new Sequelize(
-  // config.development.database,
-  // config.development.username,
-  // config.development.password,
-  {
-    host: process.env.DB_HOST || "localhost",
-    database: process.env.DB_DBNAME,
-    dialect: "postgres",
-    username: process.env.DB_USERNAME,
-    password: process.env.DB_PASSWORD,
-    logging: false,
-    timezone: "+09:00",
-  }
-);
+export const sequelize = new Sequelize({
+  host: process.env.DB_HOST || "localhost",
+  database: process.env.DB_DBNAME,
+  dialect: "mysql",
+  username: process.env.DB_USERNAME,
+  password: process.env.DB_PASSWORD,
+  logging: false,
+  timezone: "+09:00",
+});
 
 sequelize.addModels([
   User,

@@ -1,8 +1,7 @@
 import express from "express";
 import { sequelize } from "./models";
-import router from "./router";
 import cors from "cors";
-
+import { swaggerUi, specs } from "./modules/swagger";
 const app = express();
 
 app.use(cors());
@@ -15,6 +14,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use("/", require("./api")); //라우터
+
+// swagger
 
 // error handler
 app.use(function (err, req, res, next) {
@@ -37,7 +38,7 @@ app
       // .sync({ alter: true })
       .authenticate()
       .then(async () => {
-        console.log("Postgres Connected ...");
+        console.log("MySQL Connected ...");
       })
       .catch((err) => {
         console.log("TT : ", err);
