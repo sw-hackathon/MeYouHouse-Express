@@ -28,7 +28,7 @@ export const getIssueService = _.memoize(() => {
         category,
         title,
       });
-      return issue.id;
+      return issue;
     },
     async createIssueImgs(data: { issueId: number; imgs: string[] }) {
       const { issueId, imgs } = data;

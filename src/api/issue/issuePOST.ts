@@ -36,21 +36,23 @@ module.exports = async (req: Request, res: Response) => {
         : null;
     }
 
-    const issueId = await getIssueService().createIssue({
+    const issue = await getIssueService().createIssue({
       residentId,
       content,
       category,
       title,
     });
 
-    if (issueId) {
+    if (issue) {
       if (imgs) {
         await getIssueService().createIssueImgs({
-          issueId,
+          issueId: issue.id,
           imgs,
         });
       }
-      return res.status(sc.OK).send(success(sc.OK, rm.CREATE_ISSUE_SUCCESS));
+      return res
+        .status(sc.OK)
+        .send(success(sc.OK, rm.CREATE_ISSUE_SUCCESS, { issue }));
     }
   } catch (error) {
     console.log(error);
