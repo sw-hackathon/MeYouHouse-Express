@@ -16,6 +16,8 @@ router.post(
   ]),
   require("./issuePOST")
 );
+
+router.get("/date", require("./issueDateGET"));
 router.get("/:issueId", require("./issueDetailGET"));
 router.get("", require("./issueGET"));
 

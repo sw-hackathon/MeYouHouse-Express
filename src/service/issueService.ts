@@ -117,5 +117,58 @@ export const getIssueService = _.memoize(() => {
         return issues;
       }
     },
+    async getIssuesByYearAndMonth(data: {
+      userId: number;
+      isClient: boolean;
+      year: number;
+      month: number;
+    }) {
+      const { userId, isClient, year, month } = data;
+      let startDate = `${year}-${month}-01`;
+      if (month < 10) startDate = `${year}-0${month}-01`;
+      let endDate = `${year}-${month + 1}-01`;
+      if (month + 1 < 10) endDate = `${year}-0${month + 1}-01`;
+      else if (month == 12) endDate = `${year + 1}-01-01`;
+
+      if (isClient) {
+        const resident = await Resident.findOne({
+          where: { user_id: userId },
+          attributes: ["id"],
+        });
+        const issues = await Issue.findAll({
+          where: {
+            created_at: {
+              [Op.gte]: startDate,
+              [Op.lt]: endDate,
+            },
+            resident_id: resident.id,
+          },
+        });
+
+        return issues;
+      } else {
+        const home = await Home.findOne({
+          where: { host_id: userId },
+          include: [
+            {
+              model: Resident,
+            },
+          ],
+        });
+        const residentIds = home.residents.map((o) => o.id);
+        const issues = await Issue.findAll({
+          where: {
+            created_at: {
+              [Op.gte]: startDate,
+              [Op.lt]: endDate,
+            },
+            resident_id: {
+              [Op.in]: residentIds,
+            },
+          },
+        });
+        return issues;
+      }
+    },
   };
 });

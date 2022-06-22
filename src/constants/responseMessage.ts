@@ -7,6 +7,8 @@ export default {
   CREATE_ISSUE_SUCCESS: "이슈 생성 성공",
   GET_ISSUE_DETAIL_SUCCESS: "특정 이슈 조회 성공",
   GET_ISSUE_BY_DATE: "특정 날짜 이슈 조회 성공",
+  GET_ISSUE_DAYS: "이슈 존재 날짜 조회 성공",
+
   // 서버 내 오류
   INTERNAL_SERVER_ERROR: "서버 내 오류",
 };
