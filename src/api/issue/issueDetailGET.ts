@@ -19,6 +19,10 @@ module.exports = async (req: Request, res: Response) => {
 
   try {
     const issue = await getIssueService().getIssueById(Number(issueId));
+    let imgs = [];
+    if (issue.images) {
+      imgs = issue.images.map((o) => o.img);
+    }
     const comments = issue.comments.map((comment) => {
       const is_me = comment.user_id == userId ? true : false;
       const is_client =
@@ -50,6 +54,7 @@ module.exports = async (req: Request, res: Response) => {
       category: issue.category,
       room_number: issue.resident.room_number,
       is_completed: issue.is_completed,
+      imgs,
       created_at: dayjs(issue.created_at).format("MM/DD HH:mm"),
       comments,
     };

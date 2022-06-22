@@ -61,6 +61,9 @@ export const getIssueService = _.memoize(() => {
             order: [["created_at", "ASC"]],
             attributes: ["id", "user_id", "content", "created_at"],
           },
+          {
+            model: IssueImage,
+          },
         ],
       });
 
