@@ -3,6 +3,10 @@ export default {
   OUT_OF_VALUE: "파라미터 값이 잘못되었습니다.",
   NOT_FOUND: "잘못된 경로입니다.",
 
+  // auth
+  CREATE_HOME_SUCCESS: "방 생성 성공",
+  GET_HOME_BY_CODE_SUCCESS: "코드로 방 정보 조회 성공",
+
   // 이슈
   CREATE_ISSUE_SUCCESS: "이슈 생성 성공",
   GET_ISSUE_DETAIL_SUCCESS: "특정 이슈 조회 성공",

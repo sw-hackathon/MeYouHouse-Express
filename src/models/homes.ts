@@ -40,7 +40,7 @@ export default class Home extends Model {
   name: string;
 
   @Column
-  code: number;
+  code: string;
 
   @BelongsTo(() => User)
   host: User;
