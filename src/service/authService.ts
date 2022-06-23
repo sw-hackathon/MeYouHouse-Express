@@ -1,6 +1,5 @@
 import _ from "lodash";
 import { Home, User } from "../models";
-import { nanoid } from "nanoid";
 
 export const getAuthService = _.memoize(() => {
   return {
